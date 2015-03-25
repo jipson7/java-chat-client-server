@@ -4,11 +4,11 @@ import java.util.Scanner;
 
 public class ClientThread implements Runnable {
 
-	private Socket socket;//MAKE SOCKET INSTANCE VARIABLE
+	private Socket socket;
 	
 	public ClientThread(Socket s)
 	{
-		socket = s;//INSTANTIATE THE INSTANCE VARIABLE
+		socket = s;
 	}
 	
 	@Override
@@ -16,23 +16,23 @@ public class ClientThread implements Runnable {
 	{
 		try
 		{
-			Scanner chat = new Scanner(System.in);//GET THE INPUT FROM THE CMD
-			Scanner in = new Scanner(socket.getInputStream());//GET THE CLIENTS INPUT STREAM (USED TO READ DATA SENT FROM THE SERVER)
-			PrintWriter out = new PrintWriter(socket.getOutputStream());//GET THE CLIENTS OUTPUT STREAM (USED TO SEND DATA TO THE SERVER)
+			Scanner chat = new Scanner(System.in);
+			Scanner in = new Scanner(socket.getInputStream());
+			PrintWriter out = new PrintWriter(socket.getOutputStream());
 			
-			while (true)//WHILE THE PROGRAM IS RUNNING
+			while (true)
 			{						
-				String input = chat.nextLine();	//SET NEW VARIABLE input TO THE VALUE OF WHAT THE CLIENT TYPED IN
-				out.println(input);//SEND IT TO THE SERVER
-				out.flush();//FLUSH THE STREAM
+				String input = chat.nextLine();	
+				out.println(input);
+				out.flush();
 				
-				if(in.hasNext())//IF THE SERVER SENT US SOMETHING
-					System.out.println(in.nextLine());//PRINT IT OUT
+				if(in.hasNext())
+					System.out.println(in.nextLine());
 			}
 		}
 		catch (Exception e)
 		{
-			e.printStackTrace();//MOST LIKELY WONT BE AN ERROR, GOOD PRACTICE TO CATCH THOUGH
+			e.printStackTrace();
 		} 
 	}
 

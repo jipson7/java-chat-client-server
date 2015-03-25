@@ -4,25 +4,25 @@ import java.net.Socket;
 
 public class Client {
 
-	private final static int PORT = 6677;//SET A CONSTANT VARIABLE PORT
-	private final static String HOST = "localhost";//SET A CONSTANT VARIABLE HOST
+	private final static int PORT = 6677;
+	private final static String HOST = "localhost";
 	
 	public static void main(String[] args) throws IOException
 	{
 		try 
 		{
 			
-			Socket s = new Socket(HOST, PORT);//CONNECT TO THE SERVER
+			Socket s = new Socket(HOST, PORT);
 			
-			System.out.println("You connected to " + HOST);//IF CONNECTED THEN PRINT IT OUT
+			System.out.println("You connected to " + HOST);
 			
-			ClientThread client = new ClientThread(s);//START NEW CLIENT OBJECT
+			ClientThread client = new ClientThread(s);
 			
-			Thread t = new Thread(client);//INITIATE NEW THREAD
-			t.start();//START THREAD
+			Thread t = new Thread(client);
+			t.start();
 			
 		} 
-		catch (Exception noServer)//IF DIDNT CONNECT PRINT THAT THEY DIDNT
+		catch (Exception noServer)
 		{
 			System.out.println("The server might not be up at this time.");
 			System.out.println("Please try again later.");

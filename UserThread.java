@@ -5,35 +5,35 @@ import java.util.Scanner;
 
 public class UserThread implements Runnable{
 
-	private Socket socket;//SOCKET INSTANCE VARIABLE
+	private Socket socket;
 	
 	public UserThread(Socket s)
 	{
-		socket = s;//INSTANTIATE THE SOCKET
+		socket = s;
 	}
 	
 	@Override
-	public void run() //(IMPLEMENTED FROM THE RUNNABLE INTERFACE)
+	public void run() 
 	{
-		try //HAVE TO HAVE THIS FOR THE in AND out VARIABLES
+		try 
 		{
-			Scanner in = new Scanner(socket.getInputStream());//GET THE SOCKETS INPUT STREAM (THE STREAM THAT YOU WILL GET WHAT THEY TYPE FROM)
-			PrintWriter out = new PrintWriter(socket.getOutputStream());//GET THE SOCKETS OUTPUT STREAM (THE STREAM YOU WILL SEND INFORMATION TO THEM FROM)
+			Scanner in = new Scanner(socket.getInputStream());
+			PrintWriter out = new PrintWriter(socket.getOutputStream());
 			
-			while (true)//WHILE THE PROGRAM IS RUNNING
+			while (true)
 			{		
 				if (in.hasNext())
 				{
-					String input = in.nextLine();//IF THERE IS INPUT THEN MAKE A NEW VARIABLE input AND READ WHAT THEY TYPED
-					System.out.println("Client Said: " + input);//PRINT IT OUT TO THE SCREEN
-					out.println("You Said: " + input);//RESEND IT TO THE CLIENT
-					out.flush();//FLUSH THE STREAM
+					String input = in.nextLine();
+					System.out.println("Client Said: " + input);
+					out.println("You Said: " + input);
+					out.flush();
 				}
 			}
 		} 
 		catch (Exception e)
 		{
-			e.printStackTrace();//MOST LIKELY THERE WONT BE AN ERROR BUT ITS GOOD TO CATCH
+			e.printStackTrace();
 		}	
 	}
 
