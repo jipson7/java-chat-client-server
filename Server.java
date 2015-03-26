@@ -18,7 +18,7 @@ public class Server {
 
 			Socket s = server.accept();
 			
-			System.out.println("Client connected from " + s.getLocalAddress().getHostName());	
+			System.out.println("User connected from " + s.getLocalAddress().getHostName());	
 			
 			UserThread chat = new UserThread(s, messageBank);
 			Thread t = new Thread(chat);

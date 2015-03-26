@@ -71,7 +71,7 @@ public class UserThread extends Thread{
 
 		} else {
 
-			out.println(input);
+			out.println("Enter a valid command, <login>, <send>, or <fetch>");
 			out.flush();
 
 		}
@@ -88,14 +88,27 @@ public class UserThread extends Thread{
 
 		}
 
+		if (!messageBank.containsKey(username)) {
+
+			out.println("No Messages");
+			out.flush();
+			return;
+
+		}
+
 		ArrayList<String> toOutput = messageBank.get(username);
+
+		String xOutput = "";
 
 		for (String x : toOutput) {
 
-			out.println(x);
-			out.flush();
+			xOutput += x + '\n';
 
 		}
+
+		out.println(xOutput);
+		out.flush();
+		messageBank.remove(username);
 
 
 	}
